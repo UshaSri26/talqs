@@ -81,10 +81,17 @@ git push -u origin main
 
 -------------------- Q4 — DOCKER --------------------
 Dockerfile:
+for jar
 FROM eclipse-temurin:17-jdk-alpine
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} /app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
+
+for war
+FROM tomcat:9.0
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8081
+CMD ["catalina.sh", "run"]
 
 Commands:
 docker build -t demoapp:v1 .       -> Build image
