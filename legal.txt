@@ -270,6 +270,41 @@ docker login                       -> Login to DockerHub
 docker tag demoapp:v1 user/demoapp:v1 -> Tag image
 docker push user/demoapp:v1        -> Push to DockerHub
 
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/
+EXPOSE 80
+<html>
+  <body>
+    <h1>Hello from Nginx inside Docker!</h1>
+  </body>
+</html>
+docker build -t mynginx:v1 .
+docker run -d -p 8080:80 mynginx:v1
+
+
+If they want you to serve your own webpage:
+
+Create a Dockerfile:
+
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/
+EXPOSE 80
+
+
+Create a simple index.html:
+
+<html>
+  <body>
+    <h1>Hello from Nginx inside Docker!</h1>
+  </body>
+</html>
+
+
+Build and run:
+
+docker build -t mynginx:v1 .
+docker run -d -p 8080:80 mynginx:v1
+
 -------------------- Q5 — DOCKER COMPOSE --------------------
 docker-compose.yml:
 version: '3.8'
