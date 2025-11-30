@@ -13,18 +13,18 @@ EXPOSE 8081
 CMD ["catalina.sh", "run"]
 
 docker-compose.yml:
-version: '3.8'
 services:
   web:
-    image: <dockerhub-username>/demoapp:v1
+    image: maven:3.9-eclipse-temurin-17
     ports:
-      - "8080:8080"
+      - "9090:9090"
     depends_on:
       - db
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/demo
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: rootpw
+
   db:
     image: mysql:8.0
     environment:
@@ -34,8 +34,10 @@ services:
       - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
+
 volumes:
   db-data:
+
 -------------------- POM.XML STRUCTURE --------------------
 <project>
   <modelVersion>4.0.0</modelVersion>
