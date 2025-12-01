@@ -316,6 +316,7 @@ Commands:
 docker build -t demoapp:v1 .       -> Build image
 docker images                      -> List images
 docker run -d -p 8080:8080 --name demoapp demoapp:v1 -> Run container
+docker run -d -p 9090:8080 app
 docker ps                          -> List running containers
 docker login                       -> Login to DockerHub
 docker tag demoapp:v1 user/demoapp:v1 -> Tag image
